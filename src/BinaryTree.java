@@ -13,57 +13,58 @@ public class BinaryTree {
     }
 
     // depth-first
-
-
-    // pre-order
-
-    public void preoder(){
-        preoder(root);
+    public void preorder() {
+        preorder(root);
     }
+
     /**
-     *  I nodi gneitori sono visitati prima dei nodi figli
+     * I nodi genitori sono visitati prima dei nodi figli
      * @param n nodo di partenza
      */
-    private void preoder(Node n){
-        // exit claude
+    private void preorder(Node n) {
+
+        // exit clause
         if (n == null) return;
 
-        System.out.print(n.getData());
-
-        preoder(n.getLeft());
-        preoder(n.getRight());
+        System.out.print(n.getData()); 
+        preorder(n.getLeft());
+        preorder(n.getRight()); 
     }
 
-    // in-order
-    public void inorder(){
+    public void inorder() {
         inorder(root);
     }
 
-    private void inorder(Node n){
-        // exit claude
+    // in-order
+    private void inorder(Node n) {
+
+        // exit clause
         if (n == null) return;
 
-        
-        preoder(n.getLeft());
-        System.out.print(n.getData());
-        preoder(n.getRight());
-        
+        inorder(n.getLeft());
+        System.out.print(n.getData()); 
+        inorder(n.getRight()); 
     }
 
-    // post-order
-    public void postorder(){
+    public void postorder() {
         postorder(root);
     }
 
-
-    private void postorder(Node n){
-        // exit claude
-        if (n == null) return;
-
-        
-        preoder(n.getLeft());
-        preoder(n.getRight());
+    public void postorder(Node n) {
+        if (n == null) {
+            System.out.println("Nodo nullo trovato in postorder");
+            return;
+        }
+        postorder(n.getLeft());
+        postorder(n.getRight());
         System.out.print(n.getData());
-        
+    }
+    
+    public int nodeCounter(Node root) {
+        if (root == null) {
+            System.out.println("Nodo nullo trovato in nodeCounter");
+            return 0;
+        }
+        return nodeCounter(root.getLeft()) + nodeCounter(root.getRight()) + 1;
     }
 }

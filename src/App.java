@@ -1,5 +1,3 @@
-
-
 public class App {
     public static void main(String[] args) throws Exception {
         
@@ -11,7 +9,7 @@ public class App {
         Node f = new Node('F');
         Node g = new Node('G');
         Node h = new Node('H');
-        Node i = new Node('i');
+        Node i = new Node('I');
 
         BinaryTree tree = new BinaryTree(a);
         a.setLeft(b);
@@ -23,10 +21,14 @@ public class App {
         c.setRight(f);
         f.setLeft(i); 
 
-        System.out.println("Pre order");
-        tree.preoder();
-        
+        System.out.println("Preorder");
+        tree.preorder();
+        System.out.println(""); 
+        System.out.println("Inorder");
+        tree.inorder();
+        System.out.println(""); 
+        System.out.println("Postorder");
+        tree.postorder();
+        System.out.println(""); 
     }
-
-        
 }
