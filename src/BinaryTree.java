@@ -52,7 +52,6 @@ public class BinaryTree {
 
     public void postorder(Node n) {
         if (n == null) {
-            System.out.println("Nodo nullo trovato in postorder");
             return;
         }
         postorder(n.getLeft());
@@ -62,9 +61,58 @@ public class BinaryTree {
     
     public int nodeCounter(Node root) {
         if (root == null) {
-            System.out.println("Nodo nullo trovato in nodeCounter");
             return 0;
         }
         return nodeCounter(root.getLeft()) + nodeCounter(root.getRight()) + 1;
+    }
+
+    /**
+     * Conta quanti nodi foglia sono contenuti nel sotto-albero
+     * @param root nodo iniziale del sotto albero
+     * @return numero di quanti nodi foglia
+     */
+    public int leavesCounter(Node root){
+        // exit clause
+        if(root == null)
+            return 0;
+        
+        // se il nodo è una foglia (non ha figli a sinistra né a destra)
+        if(root.getLeft() == null && root.getRight() == null)
+            return 1;
+        
+        // conta ricorsivamente le foglie nei sottoalberi sinistro e destro
+        return leavesCounter(root.getLeft()) + leavesCounter(root.getRight());
+    }
+
+    /**
+     * Cerca se una lettera specifica e' presente nell'albero
+     * @param root nodo iniziale del sotto albero
+     * @param letter lettera da cercaer
+     * @return esito della ricerca 
+     */
+    public boolean searchNode(Node root, char letter){
+        // exit clause 
+        if (root == null) return false;
+        if (root.getData()==letter) return true;
+
+        // chiamata ricorsiva
+        return searchNode(root.getLeft(), letter) || searchNode(root.getRight(), letter);
+        
+    }
+
+    public int dept(){
+        return dept(root);
+    }
+
+    public int dept(Node next){
+        if(next == null) return 0;
+
+        int leftDepth = dept(next.getLeft());
+        int rightDepth = dept(next.getRight());
+
+         if(leftDepth > rightDepth) 
+             return leftDepth + 1;
+        else
+            return rightDepth + 1;
     }
 }
