@@ -52,7 +52,6 @@ public class BinaryTree {
 
     public void postorder(Node n) {
         if (n == null) {
-            System.out.println("Nodo nullo trovato in postorder");
             return;
         }
         postorder(n.getLeft());
@@ -62,13 +61,10 @@ public class BinaryTree {
     
     public int nodeCounter(Node root) {
         if (root == null) {
-            System.out.println("Nodo nullo trovato in nodeCounter");
             return 0;
         }
         return nodeCounter(root.getLeft()) + nodeCounter(root.getRight()) + 1;
     }
 
 
-    ////////////////////////////
-    // se ritorni qua ricordati il git pull prima di fare delle modifiche
 }

@@ -29,6 +29,13 @@ public class App {
         System.out.println(""); 
         System.out.println("Postorder");
         tree.postorder();
-        System.out.println(""); 
+        System.out.println("");
+        System.out.println("Conta i nodi");  
+        System.out.println(tree.nodeCounter(a));
+        System.out.println("Conta le foglie");
+        System.out.println(tree.leavesCounter(a));
+        System.out.println("Conta le foglie");
+        System.out.println(tree.searchNode(a, 'G'));
+
     }
 }
