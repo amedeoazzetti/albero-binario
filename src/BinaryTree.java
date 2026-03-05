@@ -17,6 +17,8 @@ public class BinaryTree {
         preorder(root);
     }
 
+
+
     /**
      * I nodi genitori sono visitati prima dei nodi figli
      * @param n nodo di partenza
@@ -50,21 +52,77 @@ public class BinaryTree {
         postorder(root);
     }
 
-    public void postorder(Node n) {
-        if (n == null) {
-            return;
-        }
+    // post-order
+    private void postorder(Node n) {
+
+        // exit clause
+        if (n == null) return;
+
         postorder(n.getLeft());
-        postorder(n.getRight());
-        System.out.print(n.getData());
+        postorder(n.getRight()); 
+        System.out.print(n.getData()); 
     }
-    
+
+    /**
+     * Conta quanti nodi sono presenti nel sotto-albero in input
+     * @param root nodo iniziale del sotto-albero
+     * @return numero di nodi contenuti
+     */
     public int nodeCounter(Node root) {
-        if (root == null) {
-            return 0;
-        }
+        
+        // exit clause + caso base
+        if (root == null) return 0; 
+
+        // chiamata ricorsiva
         return nodeCounter(root.getLeft()) + nodeCounter(root.getRight()) + 1;
     }
 
+    /**
+     * Conta quanti nodi foglia sono contenuti nel sotto-albero
+     * @param root nodo iniziale del sotto-albero
+     * @return numero di nodi foglia presenti
+     */
+    public int leavesCounter(Node root) {
 
+        // exit clause
+        if (root == null) return 0;
+        
+        if (root.getLeft() == null && root.getRight() == null) return 1;
+
+        // chiamata ricorsiva
+        return leavesCounter(root.getLeft()) + leavesCounter(root.getRight()); 
+    }
+
+    /**
+     * Cerca se una lettera specifica è presente nell'albero
+     * @param root nodo iniziale del sotto-albero
+     * @param letter lettera da cercare
+     * @return esito della ricerca
+     */
+    public boolean searchNode(Node root, char letter) {
+
+        // exit clause
+        if (root == null) return false;
+        if (root.getData() == letter) return true;
+
+        // chiamata ricorsiva
+        return searchNode(root.getLeft(), letter) || searchNode(root.getRight(), letter);
+    }
+
+    /**
+     * Calcola la profondità dell'albero (il percorso più lungo)
+     * @param root nodo di partenza dell'albero
+     * @return la lunghezza del percorso più lungo
+     */
+    public int depth(Node root) {
+
+        // exit clause
+        if (root == null) return 0;
+        if (root.getLeft() == null && root.getRight() == null) return 0;    // foglia
+
+        // chiamata ricorsiva
+        int leftDepth = depth(root.getLeft());
+        int rightDepth = depth(root.getRight());
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
 }
