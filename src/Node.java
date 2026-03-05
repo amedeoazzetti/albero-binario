@@ -27,5 +27,5 @@ public class Node {
     public void setRight(Node right) {
         this.right = right;
     }
-
+    
 }

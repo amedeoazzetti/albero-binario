@@ -67,4 +67,8 @@ public class BinaryTree {
         }
         return nodeCounter(root.getLeft()) + nodeCounter(root.getRight()) + 1;
     }
+
+
+    ////////////////////////////
+    // se ritorni qua ricordati il git pull prima di fare delle modifiche
 }
