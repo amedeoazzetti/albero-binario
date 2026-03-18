@@ -157,17 +157,19 @@ public class BinaryTree {
         if (start == null) {
             return null; // Se il nodo di partenza è nullo, non c'è percorso
         }
+
         if (start == end) {
             return String.valueOf(start.getData()); // Se abbiamo raggiunto il nodo di destinazione, restituiamo il suo dato
         }
+
         // Cerca nei figli sinistro e destro
         String leftPath = mostraPercorso(start.getLeft(), end);
         String rightPath = mostraPercorso(start.getRight(), end);
         
         if (leftPath != null) {
-            return start.getData() + " -> " + leftPath; // Se il percorso è stato trovato nel figlio sinistro, aggiungiamo il nodo corrente al percorso
+            return start.getData() + " " + leftPath; // Se il percorso è stato trovato nel figlio sinistro, aggiungiamo il nodo corrente al percorso
         } else if (rightPath != null) {
-            return start.getData() + " -> " + rightPath; // Se il percorso è stato trovato nel figlio destro, aggiungiamo il nodo corrente al percorso
+            return start.getData() + " " + rightPath; // Se il percorso è stato trovato nel figlio destro, aggiungiamo il nodo corrente al percorso
         } else {
             return null; // Se il percorso non è stato trovato in nessuno dei figli, restituiamo null
         }
