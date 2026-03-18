@@ -125,38 +125,51 @@ public class BinaryTree {
 
         // chiamata ricorsiva
         return searchNode(root.getLeft(), letter) || searchNode(root.getRight(), letter);
-    }
-
-    /**
-     * Calcola la profondità dell'albero (il percorso più lungo)
-     *
-     * @param root nodo di partenza dell'albero
-     * @return la lunghezza del percorso più lungo
-     */
-    public int depth(Node root) {
-
-        // exit clause
-        if (root == null) {
-            return 0;
-        }
-        if (root.getLeft() == null && root.getRight() == null) {
-            return 0;    // foglia
-        }
-        // chiamata ricorsiva
-        int leftDepth = depth(root.getLeft());
-        int rightDepth = depth(root.getRight());
-        return Math.max(leftDepth, rightDepth) + 1;
-    }
-
-    public int  contaProfonditaNodo(Node cercato) {
-        int profondità = 1;
-        Node n = root;
-
-        if (n.equals(cercato)) 
-            return profondità;
-
-        return profondità;
         
+    }
 
+    public int dept(){
+        return dept(root);
+    }
+
+    public int dept(Node next){
+        if(next == null) return 0;
+
+        int leftDepth = dept(next.getLeft());
+        int rightDepth = dept(next.getRight());
+
+         if(leftDepth > rightDepth) 
+             return leftDepth + 1;
+        else
+            return rightDepth + 1;
+    }
+
+    public int calcolaLivello(Node n) {
+        if (n == null) {
+            return -1; // Livello di un nodo nullo è considerato -1
+        }
+        int leftLevel = calcolaLivello(n.getLeft());
+        int rightLevel = calcolaLivello(n.getRight());
+        return Math.max(leftLevel, rightLevel) + 1; // Livello del nodo corrente è il massimo tra i livelli dei figli + 1
+    }
+
+    public String mostraPercorso(Node start, Node end) {
+        if (start == null) {
+            return null; // Se il nodo di partenza è nullo, non c'è percorso
+        }
+        if (start == end) {
+            return String.valueOf(start.getData()); // Se abbiamo raggiunto il nodo di destinazione, restituiamo il suo dato
+        }
+        // Cerca nei figli sinistro e destro
+        String leftPath = mostraPercorso(start.getLeft(), end);
+        String rightPath = mostraPercorso(start.getRight(), end);
+        
+        if (leftPath != null) {
+            return start.getData() + " -> " + leftPath; // Se il percorso è stato trovato nel figlio sinistro, aggiungiamo il nodo corrente al percorso
+        } else if (rightPath != null) {
+            return start.getData() + " -> " + rightPath; // Se il percorso è stato trovato nel figlio destro, aggiungiamo il nodo corrente al percorso
+        } else {
+            return null; // Se il percorso non è stato trovato in nessuno dei figli, restituiamo null
+        }
     }
 }
